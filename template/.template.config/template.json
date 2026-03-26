@@ -50,6 +50,44 @@
       "parameters": { "format": "D" }
     }
   },
+  "specialCustomOperations": {
+    "**/*.tsx": {
+      "operations": [
+        {
+          "type": "conditional",
+          "configuration": {
+            "if": ["// #if"],
+            "else": ["// #else"],
+            "elseif": ["// #elseif"],
+            "endif": ["// #endif"],
+            "actionableIf": ["// #if"],
+            "actionableElse": ["// #else"],
+            "actionableElseif": ["// #elseif"],
+            "trim": true,
+            "wholeLine": true
+          }
+        }
+      ]
+    },
+    "**/*.ts": {
+      "operations": [
+        {
+          "type": "conditional",
+          "configuration": {
+            "if": ["// #if"],
+            "else": ["// #else"],
+            "elseif": ["// #elseif"],
+            "endif": ["// #endif"],
+            "actionableIf": ["// #if"],
+            "actionableElse": ["// #else"],
+            "actionableElseif": ["// #elseif"],
+            "trim": true,
+            "wholeLine": true
+          }
+        }
+      ]
+    }
+  },
   "sources": [
     {
       "modifiers": [
