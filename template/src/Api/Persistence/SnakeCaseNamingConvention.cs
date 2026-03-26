@@ -14,13 +14,15 @@ public sealed class SnakeCaseNamingConvention : IModelFinalizingConvention
     {
         foreach (var entity in modelBuilder.Metadata.GetEntityTypes())
         {
-            if (entity.GetTableName() is { } tableName)
+            var originalTableName = entity.GetTableName();
+
+            if (originalTableName is { } tableName)
                 entity.SetTableName(ToSnakeCase(tableName));
 
             foreach (var property in entity.GetProperties())
             {
                 var storeObject = StoreObjectIdentifier.Table(
-                    entity.GetTableName()!, entity.GetSchema());
+                    originalTableName ?? entity.GetTableName()!, entity.GetSchema());
                 if (property.GetColumnName(storeObject) is { } columnName)
                     property.SetColumnName(ToSnakeCase(columnName));
             }
@@ -36,6 +38,10 @@ public sealed class SnakeCaseNamingConvention : IModelFinalizingConvention
         }
     }
 
-    private static string ToSnakeCase(string name) =>
-        Regex.Replace(name, "([a-z0-9])([A-Z])", "$1_$2").ToLowerInvariant();
+    private static string ToSnakeCase(string name)
+    {
+        var result = Regex.Replace(name, "([A-Z]+)([A-Z][a-z])", "$1_$2");
+        result = Regex.Replace(result, "([a-z0-9])([A-Z])", "$1_$2");
+        return result.ToLowerInvariant();
+    }
 }

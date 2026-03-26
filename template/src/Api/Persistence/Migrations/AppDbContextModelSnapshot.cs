@@ -21,20 +21,16 @@ namespace Company.ProjectName.Api.Persistence.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("id");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateOnly>("Date")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("date");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Summary")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("summary");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("TemperatureC")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("temperature_c");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id")
                         .HasName("pk_weather_forecasts");

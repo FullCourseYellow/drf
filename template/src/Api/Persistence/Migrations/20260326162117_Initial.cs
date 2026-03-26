@@ -15,15 +15,15 @@ namespace Company.ProjectName.Api.Persistence.Migrations
                 name: "weather_forecasts",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    date = table.Column<DateOnly>(type: "TEXT", nullable: false),
-                    temperature_c = table.Column<int>(type: "INTEGER", nullable: false),
-                    summary = table.Column<string>(type: "TEXT", nullable: true)
+                    Date = table.Column<DateOnly>(type: "TEXT", nullable: false),
+                    TemperatureC = table.Column<int>(type: "INTEGER", nullable: false),
+                    Summary = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_weather_forecasts", x => x.id);
+                    table.PrimaryKey("pk_weather_forecasts", x => x.Id);
                 });
         }
 
