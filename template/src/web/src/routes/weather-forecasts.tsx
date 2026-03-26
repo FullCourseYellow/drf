@@ -3,20 +3,9 @@ import { useEffect, useState } from 'react'
 import { type ColumnDef } from '@tanstack/react-table'
 import { DataTable } from '@/components/data-table'
 import { getWeatherForecasts } from '@/api/generated/weather-forecasts/weather-forecasts'
+import type { WeatherForecast } from '@/api/generated/companyProjectNameApiV1.schemas'
 
 const PAGE_SIZE = 10
-
-interface WeatherForecast {
-  id: number
-  date: string
-  temperatureC: number
-  summary: string | null
-}
-
-interface PagedResult {
-  count: number
-  data: WeatherForecast[]
-}
 
 const columns: ColumnDef<WeatherForecast>[] = [
   { accessorKey: 'id', header: 'ID' },
@@ -43,9 +32,10 @@ function WeatherForecastsPage() {
     setLoading(true)
     getWeatherForecasts({ Page: page, PageSize: PAGE_SIZE })
       .then((result) => {
-        const paged = result.data as unknown as PagedResult
-        setData(paged?.data ?? [])
-        setTotalCount(paged?.count ?? 0)
+        if (result.status === 200) {
+          setData(result.data.data ?? [])
+          setTotalCount(Number(result.data.count ?? 0))
+        }
       })
       .finally(() => setLoading(false))
   }, [page])

@@ -4,6 +4,60 @@
  * Company.ProjectName.Api | v1
  * OpenAPI spec version: 1.0.0
  */
+/**
+ * @pattern ^-?(?:0|[1-9]\d*)$
+ */
+export type PagingOfWeatherForecastCount = number | string;
+
+export interface PagingOfWeatherForecast {
+  /** @pattern ^-?(?:0|[1-9]\d*)$ */
+  count?: PagingOfWeatherForecastCount;
+  data?: WeatherForecast[];
+}
+
+export type ProblemDetailsType = null | string;
+
+export type ProblemDetailsTitle = null | string;
+
+/**
+ * @pattern ^-?(?:0|[1-9]\d*)$
+ */
+export type ProblemDetailsStatus = null | number | string;
+
+export type ProblemDetailsDetail = null | string;
+
+export type ProblemDetailsInstance = null | string;
+
+export interface ProblemDetails {
+  type?: ProblemDetailsType;
+  title?: ProblemDetailsTitle;
+  /** @pattern ^-?(?:0|[1-9]\d*)$ */
+  status?: ProblemDetailsStatus;
+  detail?: ProblemDetailsDetail;
+  instance?: ProblemDetailsInstance;
+}
+
+/**
+ * @pattern ^-?(?:0|[1-9]\d*)$
+ */
+export type WeatherForecastId = number | string;
+
+/**
+ * @pattern ^-?(?:0|[1-9]\d*)$
+ */
+export type WeatherForecastTemperatureC = number | string;
+
+export type WeatherForecastSummary = null | string;
+
+export interface WeatherForecast {
+  /** @pattern ^-?(?:0|[1-9]\d*)$ */
+  id?: WeatherForecastId;
+  date?: string;
+  /** @pattern ^-?(?:0|[1-9]\d*)$ */
+  temperatureC?: WeatherForecastTemperatureC;
+  summary?: WeatherForecastSummary;
+}
+
 export type GetWeatherForecastsParams = {
 /**
  * @pattern ^-?(?:0|[1-9]\d*)$

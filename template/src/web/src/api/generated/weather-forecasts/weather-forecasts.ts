@@ -5,7 +5,10 @@
  * OpenAPI spec version: 1.0.0
  */
 import type {
-  GetWeatherForecastsParams
+  GetWeatherForecastsParams,
+  PagingOfWeatherForecast,
+  ProblemDetails,
+  WeatherForecast
 } from '../companyProjectNameApiV1.schemas';
 
 
@@ -13,16 +16,23 @@ import type {
  * @summary List weather forecasts with filtering, sorting, and pagination
  */
 export type getWeatherForecastsResponse200 = {
-  data: void
+  data: PagingOfWeatherForecast
   status: 200
+}
+
+export type getWeatherForecastsResponse500 = {
+  data: ProblemDetails
+  status: 500
 }
     
 export type getWeatherForecastsResponseSuccess = (getWeatherForecastsResponse200) & {
   headers: Headers;
 };
-;
+export type getWeatherForecastsResponseError = (getWeatherForecastsResponse500) & {
+  headers: Headers;
+};
 
-export type getWeatherForecastsResponse = (getWeatherForecastsResponseSuccess)
+export type getWeatherForecastsResponse = (getWeatherForecastsResponseSuccess | getWeatherForecastsResponseError)
 
 export const getGetWeatherForecastsUrl = (params: GetWeatherForecastsParams,) => {
   const normalizedParams = new URLSearchParams();
@@ -61,16 +71,28 @@ export const getWeatherForecasts = async (params: GetWeatherForecastsParams, opt
  * @summary Get a weather forecast by id
  */
 export type getWeatherForecastByIdResponse200 = {
-  data: void
+  data: WeatherForecast
   status: 200
+}
+
+export type getWeatherForecastByIdResponse404 = {
+  data: ProblemDetails
+  status: 404
+}
+
+export type getWeatherForecastByIdResponse500 = {
+  data: ProblemDetails
+  status: 500
 }
     
 export type getWeatherForecastByIdResponseSuccess = (getWeatherForecastByIdResponse200) & {
   headers: Headers;
 };
-;
+export type getWeatherForecastByIdResponseError = (getWeatherForecastByIdResponse404 | getWeatherForecastByIdResponse500) & {
+  headers: Headers;
+};
 
-export type getWeatherForecastByIdResponse = (getWeatherForecastByIdResponseSuccess)
+export type getWeatherForecastByIdResponse = (getWeatherForecastByIdResponseSuccess | getWeatherForecastByIdResponseError)
 
 export const getGetWeatherForecastByIdUrl = (id: number,) => {
 
