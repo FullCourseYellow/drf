@@ -24,6 +24,9 @@ try
     var builder = WebApplication.CreateBuilder(args);
 
     // ── Serilog ──────────────────────────────────────────────────────────────
+    // Sinks are owned in code below. ReadFrom.Configuration reads MinimumLevel
+    // overrides from appsettings.json — do not add WriteTo entries there to
+    // avoid duplicate output.
     builder.Host.UseSerilog((context, services, config) => config
         .ReadFrom.Configuration(context.Configuration)
         .ReadFrom.Services(services)
