@@ -1,0 +1,71 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Company.ProjectName.Api</RootNamespace>
+    <AssemblyName>Company.ProjectName.Api</AssemblyName>
+    <UserSecretsId>company-projectname-api</UserSecretsId>
+  </PropertyGroup>
+
+  <!-- Build-time OpenAPI generation: outputs openapi.json to src/web/ -->
+  <PropertyGroup>
+    <OpenApiDocumentsDirectory>$(MSBuildProjectDirectory)/../web</OpenApiDocumentsDirectory>
+    <OpenApiGenerateDocuments>true</OpenApiGenerateDocuments>
+    <OpenApiDocumentName>v1</OpenApiDocumentName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.*">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Serilog.AspNetCore" Version="9.*" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="6.*" />
+    <PackageReference Include="Serilog.Sinks.File" Version="6.*" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.*" />
+    <PackageReference Include="Microsoft.Extensions.ApiDescription.Server" Version="10.0.*">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Scalar.AspNetCore" Version="2.*" />
+    <PackageReference Include="Gridify" Version="2.*" />
+    <PackageReference Include="ErrorOr" Version="2.*" />
+  </ItemGroup>
+
+  <!--#if (includeAuth)
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="10.0.*" />
+  </ItemGroup>
+  #endif-->
+
+  <!--#if (includeOpenTelemetry)
+  <ItemGroup>
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.*" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.*" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.*" />
+    <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.*" />
+  </ItemGroup>
+  #endif-->
+
+  <!--#if (includeFrontend)-->
+  <!-- Publish: build frontend and copy dist/ to wwwroot/ -->
+  <!--
+  <Target Name="PublishFrontend" AfterTargets="ComputeFilesToPublish" Condition="'$(PublishDir)' != ''">
+    <Message Text="Building frontend..." Importance="high" />
+    <Exec Command="npm run generate-api" WorkingDirectory="$(MSBuildProjectDirectory)/../web" />
+    <Exec Command="npm run build" WorkingDirectory="$(MSBuildProjectDirectory)/../web" />
+    <ItemGroup>
+      <DistFiles Include="$(MSBuildProjectDirectory)/../web/dist/**" />
+      <ResolvedFileToPublish Include="@(DistFiles)">
+        <RelativePath>wwwroot/%(RecursiveDir)%(Filename)%(Extension)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+  -->
+  <!--#endif-->
+
+</Project>
