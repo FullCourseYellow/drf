@@ -15,15 +15,15 @@ A `dotnet new` template for building full-stack applications with .NET 10 minima
 Clone or download the repository, then install from the project directory:
 
 ```bash
-git clone https://github.com/FullCourseYellow/drc.git
-cd drc
+git clone https://github.com/FullCourseYellow/drf.git
+cd drf
 dotnet new install .
 ```
 
 Or if you already have the folder:
 
 ```bash
-dotnet new install /path/to/drc
+dotnet new install /path/to/drf
 ```
 
 ### From GitHub (NuGet package)
@@ -31,15 +31,15 @@ dotnet new install /path/to/drc
 Once the package is published to NuGet:
 
 ```bash
-dotnet new install FullCourseYellow.Drc.Template
+dotnet new install FullCourseYellow.Drf.Template
 ```
 
 ### From a specific GitHub release (nupkg)
 
-Download the `.nupkg` from the [releases page](https://github.com/FullCourseYellow/drc/releases) and install it directly:
+Download the `.nupkg` from the [releases page](https://github.com/FullCourseYellow/drf/releases) and install it directly:
 
 ```bash
-dotnet new install FullCourseYellow.Drc.Template.1.0.0.nupkg
+dotnet new install FullCourseYellow.Drf.Template.1.0.0.nupkg
 ```
 
 ## Update
@@ -49,7 +49,7 @@ dotnet new install FullCourseYellow.Drc.Template.1.0.0.nupkg
 Re-run install from the same folder to pick up the latest changes:
 
 ```bash
-cd /path/to/drc
+cd /path/to/drf
 git pull
 dotnet new install .
 ```
@@ -57,13 +57,13 @@ dotnet new install .
 ### Installed from NuGet
 
 ```bash
-dotnet new install FullCourseYellow.Drc.Template --force
+dotnet new install FullCourseYellow.Drf.Template --force
 ```
 
 ## Usage
 
 ```bash
-dotnet new drc --name MyApp
+dotnet new drf --name MyApp
 ```
 
 ### Options
@@ -78,13 +78,13 @@ dotnet new drc --name MyApp
 
 ```bash
 # Full stack with all features
-dotnet new drc --name MyApp
+dotnet new drf --name MyApp
 
 # API only, no frontend
-dotnet new drc --name MyApp --include-frontend false
+dotnet new drf --name MyApp --include-frontend false
 
 # No auth
-dotnet new drc --name MyApp --include-auth false
+dotnet new drf --name MyApp --include-auth false
 ```
 
 ## Uninstall
@@ -92,13 +92,13 @@ dotnet new drc --name MyApp --include-auth false
 ### Installed from a local folder
 
 ```bash
-dotnet new uninstall /path/to/drc
+dotnet new uninstall /path/to/drf
 ```
 
 ### Installed from NuGet
 
 ```bash
-dotnet new uninstall FullCourseYellow.Drc.Template
+dotnet new uninstall FullCourseYellow.Drf.Template
 ```
 
 ## Project Structure
