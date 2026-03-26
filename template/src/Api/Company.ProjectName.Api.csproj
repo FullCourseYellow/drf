@@ -35,24 +35,23 @@
     <PackageReference Include="ErrorOr" Version="2.*" />
   </ItemGroup>
 
-  <!--#if (includeAuth)
+  <!--#if (includeAuth)-->
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="10.0.*" />
   </ItemGroup>
-  #endif-->
+  <!--#endif-->
 
-  <!--#if (includeOpenTelemetry)
+  <!--#if (includeOpenTelemetry)-->
   <ItemGroup>
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.*" />
     <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.*" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.*" />
     <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.*" />
   </ItemGroup>
-  #endif-->
+  <!--#endif-->
 
   <!--#if (includeFrontend)-->
   <!-- Publish: build frontend and copy dist/ to wwwroot/ -->
-  <!--
   <Target Name="PublishFrontend" AfterTargets="ComputeFilesToPublish" Condition="'$(PublishDir)' != ''">
     <Message Text="Building frontend..." Importance="high" />
     <Exec Command="npm run generate-api" WorkingDirectory="$(MSBuildProjectDirectory)/../web" />
@@ -65,7 +64,6 @@
       </ResolvedFileToPublish>
     </ItemGroup>
   </Target>
-  -->
   <!--#endif-->
 
 </Project>
