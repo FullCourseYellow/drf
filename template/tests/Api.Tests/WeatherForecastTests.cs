@@ -36,10 +36,10 @@ public sealed class WeatherForecastTests : IClassFixture<WebApplicationFactory<P
 
         _client = _factory.CreateClient();
 
-        // Ensure schema is created for the in-memory database
+        // Apply migrations to the in-memory database (mirrors production startup)
         using var scope = _factory.Services.CreateScope();
         var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-        db.Database.EnsureCreated();
+        db.Database.Migrate();
     }
 
     [Fact]
