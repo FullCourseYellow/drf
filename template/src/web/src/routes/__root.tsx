@@ -1,4 +1,8 @@
+import * as React from 'react'
 import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
+// #if (includeAuth)
+import { useAuth } from 'react-oidc-context'
+// #endif
 
 export const Route = createRootRoute({
   component: RootLayout,
@@ -33,3 +37,16 @@ function RootLayout() {
     </div>
   )
 }
+
+// #if (includeAuth)
+/** Wrap any route component with this to require authentication. */
+export function RequireAuth({ children }: { children: React.ReactNode }) {
+  const auth = useAuth()
+  if (auth.isLoading) return <p className="p-8 text-muted-foreground">Authenticating…</p>
+  if (!auth.isAuthenticated) {
+    auth.signinRedirect()
+    return null
+  }
+  return <>{children}</>
+}
+// #endif
