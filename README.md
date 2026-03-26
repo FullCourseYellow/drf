@@ -10,14 +10,60 @@ A `dotnet new` template for building full-stack applications with .NET 10 minima
 
 ## Installation
 
+### From a local folder
+
+Clone or download the repository, then install from the project directory:
+
 ```bash
+git clone https://github.com/FullCourseYellow/drc.git
+cd drc
 dotnet new install .
+```
+
+Or if you already have the folder:
+
+```bash
+dotnet new install /path/to/drc
+```
+
+### From GitHub (NuGet package)
+
+Once the package is published to NuGet:
+
+```bash
+dotnet new install FullCourseYellow.Drc.Template
+```
+
+### From a specific GitHub release (nupkg)
+
+Download the `.nupkg` from the [releases page](https://github.com/FullCourseYellow/drc/releases) and install it directly:
+
+```bash
+dotnet new install FullCourseYellow.Drc.Template.1.0.0.nupkg
+```
+
+## Update
+
+### Installed from a local folder
+
+Re-run install from the same folder to pick up the latest changes:
+
+```bash
+cd /path/to/drc
+git pull
+dotnet new install .
+```
+
+### Installed from NuGet
+
+```bash
+dotnet new install FullCourseYellow.Drc.Template --force
 ```
 
 ## Usage
 
 ```bash
-dotnet new fullstack --name MyApp
+dotnet new drc --name MyApp
 ```
 
 ### Options
@@ -32,19 +78,27 @@ dotnet new fullstack --name MyApp
 
 ```bash
 # Full stack with all features
-dotnet new fullstack --name MyApp
+dotnet new drc --name MyApp
 
 # API only, no frontend
-dotnet new fullstack --name MyApp --include-frontend false
+dotnet new drc --name MyApp --include-frontend false
 
 # No auth
-dotnet new fullstack --name MyApp --include-auth false
+dotnet new drc --name MyApp --include-auth false
 ```
 
 ## Uninstall
 
+### Installed from a local folder
+
 ```bash
-dotnet new uninstall .
+dotnet new uninstall /path/to/drc
+```
+
+### Installed from NuGet
+
+```bash
+dotnet new uninstall FullCourseYellow.Drc.Template
 ```
 
 ## Project Structure

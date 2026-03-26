@@ -4,7 +4,7 @@
   "classifications": ["Web", "API", "React", "Minimal API", "Full-Stack"],
   "identity": "YourName.FullStack.Template",
   "name": "Full-Stack .NET 10 + React 19",
-  "shortName": "fullstack",
+  "shortName": "drc",
   "description": ".NET 10 minimal API + React 19 with EF Core, Serilog, OTel, Scalar, OIDC, Gridify, ErrorOr, TanStack, shadcn, Tailwind v4, Orval",
   "tags": {
     "language": "C#",
