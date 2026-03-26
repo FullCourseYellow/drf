@@ -10,10 +10,14 @@
     "generate-api": "orval"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.4",
     "@tanstack/react-router": "^1.114.0",
     "@tanstack/react-table": "^8.21.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.0.0",
