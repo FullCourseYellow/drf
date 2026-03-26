@@ -9,12 +9,18 @@
     <UserSecretsId>company-projectname-api</UserSecretsId>
   </PropertyGroup>
 
-  <!-- Build-time OpenAPI generation: outputs openapi.json to src/web/ -->
+  <!-- Build-time OpenAPI generation -->
   <PropertyGroup>
-    <OpenApiDocumentsDirectory>$(MSBuildProjectDirectory)/../web</OpenApiDocumentsDirectory>
     <OpenApiGenerateDocuments>true</OpenApiGenerateDocuments>
     <OpenApiDocumentName>v1</OpenApiDocumentName>
   </PropertyGroup>
+
+  <!--#if (includeFrontend)-->
+  <!-- When frontend is included, output openapi.json to src/web/ for Orval -->
+  <PropertyGroup>
+    <OpenApiDocumentsDirectory>$(MSBuildProjectDirectory)/../web</OpenApiDocumentsDirectory>
+  </PropertyGroup>
+  <!--#endif-->
 
   <!-- Rename the SDK-generated {AssemblyName}.json to openapi.json -->
   <Target Name="RenameOpenApiDocument" AfterTargets="GenerateOpenApiDocuments">
