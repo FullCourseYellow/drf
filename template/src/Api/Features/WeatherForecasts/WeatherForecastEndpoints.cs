@@ -1,6 +1,5 @@
 using Company.ProjectName.Api.Extensions;
 using Gridify;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Company.ProjectName.Api.Features.WeatherForecasts;
 
@@ -11,17 +10,17 @@ public static class WeatherForecastEndpoints
         var forecasts = group.MapGroup("/weather-forecasts")
             .WithTags("WeatherForecasts");
 
-        forecasts.MapGet("/", (
+        forecasts.MapGet("/", async (
             IWeatherForecastService service,
             [AsParameters] GridifyQuery query) =>
-            service.GetAll(query).MatchToResult())
+            (await service.GetAllAsync(query)).MatchToResult())
             .WithName("GetWeatherForecasts")
             .WithSummary("List weather forecasts with filtering, sorting, and pagination");
 
-        forecasts.MapGet("/{id:int}", (
+        forecasts.MapGet("/{id:int}", async (
             IWeatherForecastService service,
             int id) =>
-            service.GetById(id).MatchToResult())
+            (await service.GetByIdAsync(id)).MatchToResult())
             .WithName("GetWeatherForecastById")
             .WithSummary("Get a weather forecast by id");
 

@@ -6,6 +6,6 @@ namespace Company.ProjectName.Api.Features.WeatherForecasts;
 
 public interface IWeatherForecastService
 {
-    ErrorOr<Paging<WeatherForecast>> GetAll(GridifyQuery query);
-    ErrorOr<WeatherForecast> GetById(int id);
+    Task<ErrorOr<Paging<WeatherForecast>>> GetAllAsync(GridifyQuery query);
+    Task<ErrorOr<WeatherForecast>> GetByIdAsync(int id);
 }

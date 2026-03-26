@@ -6,12 +6,23 @@ namespace Company.ProjectName.Api.Features.WeatherForecasts;
 
 public sealed class WeatherForecastService(AppDbContext db) : IWeatherForecastService
 {
-    public ErrorOr<Paging<WeatherForecast>> GetAll(GridifyQuery query) =>
-        db.WeatherForecasts.Gridify(query);
-
-    public ErrorOr<WeatherForecast> GetById(int id)
+    public Task<ErrorOr<Paging<WeatherForecast>>> GetAllAsync(GridifyQuery query)
     {
-        var forecast = db.WeatherForecasts.Find(id);
+        try
+        {
+            ErrorOr<Paging<WeatherForecast>> result = db.WeatherForecasts.Gridify(query);
+            return Task.FromResult(result);
+        }
+        catch (GridifyFilteringException ex)
+        {
+            return Task.FromResult<ErrorOr<Paging<WeatherForecast>>>(
+                Error.Validation(description: $"Invalid filter expression: {ex.Message}"));
+        }
+    }
+
+    public async Task<ErrorOr<WeatherForecast>> GetByIdAsync(int id)
+    {
+        var forecast = await db.WeatherForecasts.FindAsync(id);
         return forecast is null
             ? Error.NotFound(description: $"WeatherForecast with id {id} was not found.")
             : forecast;
