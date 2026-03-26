@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <PackageType>Template</PackageType>
+    <PackageVersion>1.0.0</PackageVersion>
+    <PackageId>YourName.FullStack.Template</PackageId>
+    <Title>Full-Stack .NET 10 + React 19 Template</Title>
+    <Authors>Your Name</Authors>
+    <Description>dotnet new template: .NET 10 minimal API + React 19, EF Core SQLite, Serilog, OTel, Scalar, OIDC, Gridify, ErrorOr, TanStack Router/Table, shadcn, Tailwind v4, Orval</Description>
+    <PackageTags>template;dotnet;react;minimal-api;fullstack</PackageTags>
+    <TargetFramework>net10.0</TargetFramework>
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <ContentTargetFolders>content</ContentTargetFolders>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="template\**\*"
+             Exclude="template\**\bin\**;template\**\obj\**;template\**\node_modules\**;template\**\.git\**" />
+  </ItemGroup>
+</Project>

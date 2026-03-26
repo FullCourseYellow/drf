@@ -1,0 +1,7 @@
+**/bin/
+**/obj/
+**/node_modules/
+**/dist/
+*.db
+logs/
+src/web/src/routeTree.gen.ts

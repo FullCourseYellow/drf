@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Your Name",
+  "classifications": ["Web", "API", "React", "Minimal API", "Full-Stack"],
+  "identity": "YourName.FullStack.Template",
+  "name": "Full-Stack .NET 10 + React 19",
+  "shortName": "fullstack",
+  "description": ".NET 10 minimal API + React 19 with EF Core, Serilog, OTel, Scalar, OIDC, Gridify, ErrorOr, TanStack, shadcn, Tailwind v4, Orval",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "Company.ProjectName",
+  "preferNameDirectory": true,
+  "symbols": {
+    "includeAuth": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true",
+      "description": "Include OIDC authentication support"
+    },
+    "includeOpenTelemetry": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true",
+      "description": "Include OpenTelemetry observability"
+    },
+    "includeFrontend": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true",
+      "description": "Include React 19 frontend"
+    },
+    "GuidSolution": {
+      "type": "generated",
+      "generator": "guid",
+      "replaces": "AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA",
+      "parameters": { "format": "D" }
+    },
+    "GuidApi": {
+      "type": "generated",
+      "generator": "guid",
+      "replaces": "BBBBBBBB-BBBB-BBBB-BBBB-BBBBBBBBBBBB",
+      "parameters": { "format": "D" }
+    },
+    "GuidApiTests": {
+      "type": "generated",
+      "generator": "guid",
+      "replaces": "CCCCCCCC-CCCC-CCCC-CCCC-CCCCCCCCCCCC",
+      "parameters": { "format": "D" }
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "condition": "(!includeFrontend)",
+          "exclude": ["src/web/**"]
+        }
+      ]
+    }
+  ]
+}
