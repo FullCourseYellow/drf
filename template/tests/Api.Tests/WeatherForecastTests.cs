@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+#if (includeAuth)
+using Microsoft.Extensions.Configuration;
+#endif
 using Xunit;
 
 namespace Company.ProjectName.Api.Tests;
@@ -22,6 +25,18 @@ public sealed class WeatherForecastTests : IClassFixture<WebApplicationFactory<P
 
         _factory = factory.WithWebHostBuilder(builder =>
         {
+#if (includeAuth)
+            // Supply dummy OIDC config so the middleware doesn't throw during tests
+            builder.ConfigureAppConfiguration((_, config) =>
+            {
+                config.AddInMemoryCollection(new Dictionary<string, string?>
+                {
+                    ["Oidc:Authority"]     = "https://test.example.com",
+                    ["Oidc:ClientId"]      = "test-client",
+                    ["Oidc:ClientSecret"]  = "test-secret",
+                });
+            });
+#endif
             builder.ConfigureServices(services =>
             {
                 // Replace the real DbContext options with in-memory SQLite
