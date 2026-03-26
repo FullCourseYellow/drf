@@ -23,5 +23,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+		SolutionGuid = {AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA}
 	EndGlobalSection
 EndGlobal

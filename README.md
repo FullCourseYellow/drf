@@ -24,9 +24,9 @@ dotnet new fullstack --name MyApp
 
 | Option | Default | Description |
 |---|---|---|
-| `--includeAuth` | `true` | Include OIDC authentication support |
-| `--includeOpenTelemetry` | `true` | Include OpenTelemetry observability |
-| `--includeFrontend` | `true` | Include React 19 frontend |
+| `--include-auth` | `true` | Include OIDC authentication support |
+| `--include-open-telemetry` | `true` | Include OpenTelemetry observability |
+| `--include-frontend` | `true` | Include React 19 frontend |
 
 ### Examples
 
@@ -35,10 +35,10 @@ dotnet new fullstack --name MyApp
 dotnet new fullstack --name MyApp
 
 # API only, no frontend
-dotnet new fullstack --name MyApp --includeFrontend false
+dotnet new fullstack --name MyApp --include-frontend false
 
 # No auth
-dotnet new fullstack --name MyApp --includeAuth false
+dotnet new fullstack --name MyApp --include-auth false
 ```
 
 ## Uninstall
