@@ -19,7 +19,7 @@ function RootLayout() {
             Company.ProjectName
           </Link>
           <Link
-            to={'/weather-forecasts' as '/'}
+            to="/weather-forecasts"
             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             activeProps={{ className: 'text-foreground font-medium' }}
           >
