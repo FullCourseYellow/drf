@@ -16,6 +16,13 @@
     <OpenApiDocumentName>v1</OpenApiDocumentName>
   </PropertyGroup>
 
+  <!-- Rename the SDK-generated {AssemblyName}.json to openapi.json -->
+  <Target Name="RenameOpenApiDocument" AfterTargets="GenerateOpenApiDocuments">
+    <Move SourceFiles="$(OpenApiDocumentsDirectory)/$(AssemblyName).json"
+          DestinationFiles="$(OpenApiDocumentsDirectory)/openapi.json"
+          Condition="Exists('$(OpenApiDocumentsDirectory)/$(AssemblyName).json')" />
+  </Target>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.*" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.*">
