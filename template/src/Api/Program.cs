@@ -5,8 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 using Serilog;
 #if (includeAuth)
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 #endif
 #if (includeOpenTelemetry)
 using OpenTelemetry.Resources;
@@ -45,37 +44,36 @@ try
 
     // ── Authentication ────────────────────────────────────────────────────────
 #if (includeAuth)
-    builder.Services.AddAuthentication(options =>
+    var authSection = builder.Configuration.GetSection("Authentication");
+    var jwtSection = authSection.GetSection("JwtBearer");
+    var useAuth = jwtSection.Exists() && !string.IsNullOrEmpty(jwtSection["Authority"]);
+    if (useAuth)
     {
-        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-    })
-    .AddCookie()
-    .AddOpenIdConnect(options =>
-    {
-        options.Authority = builder.Configuration["Oidc:Authority"];
-        options.ClientId = builder.Configuration["Oidc:ClientId"];
-        options.ClientSecret = builder.Configuration["Oidc:ClientSecret"];
-        options.ResponseType = "code";
-        options.SaveTokens = true;
-        options.GetClaimsFromUserInfoEndpoint = true;
-        options.Scope.Add("openid");
-        options.Scope.Add("profile");
-    });
-    builder.Services.AddAuthorization();
+        builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.Authority = jwtSection["Authority"];
+                options.Audience = jwtSection["Audience"];
+            });
+        builder.Services.AddAuthorization();
+    }
 #endif
 
     // ── OpenTelemetry ─────────────────────────────────────────────────────────
 #if (includeOpenTelemetry)
-    builder.Services.AddOpenTelemetry()
-        .ConfigureResource(r => r.AddService(builder.Environment.ApplicationName))
-        .WithTracing(t => t
-            .AddAspNetCoreInstrumentation()
-            .AddHttpClientInstrumentation()
-            .AddConsoleExporter())
-        .WithMetrics(m => m
-            .AddAspNetCoreInstrumentation()
-            .AddConsoleExporter());
+    var otelSection = builder.Configuration.GetSection("OpenTelemetry");
+    if (otelSection.Exists())
+    {
+        builder.Services.AddOpenTelemetry()
+            .ConfigureResource(r => r.AddService(builder.Environment.ApplicationName))
+            .WithTracing(t => t
+                .AddAspNetCoreInstrumentation()
+                .AddHttpClientInstrumentation()
+                .AddConsoleExporter())
+            .WithMetrics(m => m
+                .AddAspNetCoreInstrumentation()
+                .AddConsoleExporter());
+    }
 #endif
 
     // ── OpenAPI ───────────────────────────────────────────────────────────────
@@ -101,8 +99,11 @@ try
     }));
 
 #if (includeAuth)
-    app.UseAuthentication();
-    app.UseAuthorization();
+    if (useAuth)
+    {
+        app.UseAuthentication();
+        app.UseAuthorization();
+    }
 #endif
 
     app.UseSerilogRequestLogging();

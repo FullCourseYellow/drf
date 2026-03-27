@@ -26,14 +26,13 @@ public sealed class WeatherForecastTests : IClassFixture<WebApplicationFactory<P
         _factory = factory.WithWebHostBuilder(builder =>
         {
 #if (includeAuth)
-            // Supply dummy OIDC config so the middleware doesn't throw during tests
+            // Supply dummy JWT Bearer config so the middleware registers during tests
             builder.ConfigureAppConfiguration((_, config) =>
             {
                 config.AddInMemoryCollection(new Dictionary<string, string?>
                 {
-                    ["Oidc:Authority"]     = "https://test.example.com",
-                    ["Oidc:ClientId"]      = "test-client",
-                    ["Oidc:ClientSecret"]  = "test-secret",
+                    ["Authentication:JwtBearer:Authority"] = "https://test.example.com",
+                    ["Authentication:JwtBearer:Audience"]  = "test-api",
                 });
             });
 #endif
