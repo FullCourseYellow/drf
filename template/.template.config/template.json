@@ -86,6 +86,24 @@
           }
         }
       ]
+    },
+    "**/README.md": {
+      "operations": [
+        {
+          "type": "conditional",
+          "configuration": {
+            "if": ["<!-- #if"],
+            "else": ["<!-- #else"],
+            "elseif": ["<!-- #elseif"],
+            "endif": ["<!-- #endif"],
+            "actionableIf": ["<!-- #if"],
+            "actionableElse": ["<!-- #else"],
+            "actionableElseif": ["<!-- #elseif"],
+            "trim": true,
+            "wholeLine": true
+          }
+        }
+      ]
     }
   },
   "sources": [
@@ -94,6 +112,10 @@
         {
           "condition": "(!includeFrontend)",
           "exclude": ["src/web/**"]
+        },
+        {
+          "condition": "(!includeAuth)",
+          "exclude": ["src/web/src/api/authenticated-fetch.ts"]
         }
       ]
     }
