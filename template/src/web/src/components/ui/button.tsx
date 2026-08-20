@@ -49,7 +49,12 @@ function Button({
   return (
     <ButtonPrimitive
       data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={(state) =>
+        cn(
+          buttonVariants({ variant, size }),
+          typeof className === 'function' ? className(state) : className,
+        )
+      }
       {...props}
     />
   )
