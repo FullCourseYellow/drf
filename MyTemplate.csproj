@@ -5,7 +5,7 @@
     <PackageId>YourName.FullStack.Template</PackageId>
     <Title>Full-Stack .NET 10 + React 19 Template</Title>
     <Authors>Your Name</Authors>
-    <Description>dotnet new template: .NET 10 minimal API + React 19, EF Core SQLite, Serilog, OTel, Scalar, OIDC, Gridify, ErrorOr, TanStack Router/Table, shadcn, Tailwind v4, Orval</Description>
+    <Description>dotnet new template: .NET 10 minimal API + React 19, EF Core SQLite, Serilog, OTel, Scalar, OIDC, Gridify, ErrorOr, TanStack Router/Table, shadcn/ui (Base UI), Tailwind v4, Orval</Description>
     <PackageTags>template;dotnet;react;minimal-api;fullstack</PackageTags>
     <TargetFramework>net10.0</TargetFramework>
     <IncludeContentInPack>true</IncludeContentInPack>

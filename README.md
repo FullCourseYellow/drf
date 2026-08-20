@@ -5,7 +5,7 @@ A `dotnet new` template for building full-stack applications with .NET 10 minima
 ## Stack
 
 - **Backend:** .NET 10 Minimal API, EF Core SQLite, Serilog, OpenTelemetry, Scalar, ErrorOr, Gridify
-- **Frontend:** React 19, Vite, TanStack Router, TanStack Table, shadcn/ui, Tailwind CSS v4, Orval
+- **Frontend:** React 19, Vite, TanStack Router, TanStack Table, shadcn/ui (Base UI), Tailwind CSS v4, Orval
 - **Auth:** OIDC (optional)
 
 ## Installation

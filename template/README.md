@@ -19,7 +19,7 @@ API application built with .NET 10 Minimal API.
 src/
   Api/          .NET 10 Minimal API (EF Core SQLite, Serilog, Scalar, Gridify, ErrorOr)
 <!-- #if (includeFrontend) -->
-  web/          React 19 frontend (Vite, TanStack Router/Table, shadcn/ui, Tailwind v4, Orval)
+  web/          React 19 frontend (Vite, TanStack Router/Table, shadcn/ui (Base UI), Tailwind v4, Orval)
 <!-- #endif -->
 tests/
   Api.Tests/    xUnit integration tests
