@@ -1,7 +1,54 @@
+# .NET build output
 **/bin/
 **/obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Node and Vite
 **/node_modules/
 **/dist/
-*.db
+**/.vite/
+*.tsbuildinfo
+
+# Local environment
+.env
+.env.*
+!.env.example
+
+# Runtime data and logs
 logs/
-src/web/src/routeTree.gen.ts
+*.log
+*.db
+*.db-shm
+*.db-wal
+*.db-journal
+
+# Tests and coverage
+TestResults/
+coverage/
+coverage.*
+*.coverage
+*.coveragexml
+
+# Generated frontend files
+/src/web/openapi.json
+/src/web/src/api/generated/
+/src/web/src/routeTree.gen.ts
+
+# IDEs
+.vs/
+.vscode/
+.idea/
+*.DotSettings.user
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*~
