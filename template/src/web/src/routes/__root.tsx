@@ -1,4 +1,6 @@
+// #if (includeAuth)
 import * as React from 'react'
+// #endif
 import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
 // #if (includeAuth)
 import { useAuth } from 'react-oidc-context'
