@@ -36,13 +36,13 @@ Update `template/src/web/components.json` to:
 - Select the `base-nova` style.
 - Keep `rsc` disabled and TypeScript enabled.
 - Preserve the existing Vite source paths and aliases.
-- Add the current Tailwind prefix and Lucide icon-library fields expected by the preset.
+- Set the Tailwind `prefix` field to an empty string and `iconLibrary` to `lucide`, as expected by the preset.
 
-Update `template/src/web/package.json` to remove `@radix-ui/react-slot` and include the current packages required by the complete Base Nova foundation. This includes the Base UI runtime, Lucide icons, animation CSS, and shadcn Tailwind integration while retaining the template's existing React, Tailwind, CVA, and utility dependencies.
+Update `template/src/web/package.json` to remove `@radix-ui/react-slot`. Add `@base-ui/react` and `lucide-react` as runtime dependencies, and add `tw-animate-css` and `shadcn` as development dependencies, matching the current Base Nova style registry. Retain the template's existing React, Tailwind, CVA, and utility dependencies.
 
 Regenerate `template/src/web/package-lock.json` through npm. Do not hand-edit lockfile package records. The resulting manifest and lockfile must contain no `@radix-ui` entries.
 
-Replace the legacy HSL-only setup in `template/src/web/src/index.css` with the current Base Nova Tailwind v4 foundation. The stylesheet must include the preset's required imports, theme-variable mappings, light and dark tokens, and base element styles. This makes the checked-in wrappers and future CLI-added components use the same token system.
+Replace the legacy HSL-only setup in `template/src/web/src/index.css` with the current Base Nova Tailwind v4 foundation. The stylesheet must import `tailwindcss`, `tw-animate-css`, and `shadcn/tailwind.css`, then define the preset's theme-variable mappings, light and dark tokens, and base element styles. This makes the checked-in wrappers and future CLI-added components use the same token system.
 
 ## Component Boundaries
 
