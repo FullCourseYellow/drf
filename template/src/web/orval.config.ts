@@ -9,14 +9,13 @@ export default defineConfig({
       mode: 'tags-split',
       target: 'src/api/generated',
       client: 'fetch',
-// #if (includeAuth)
+      tsconfig: './tsconfig.app.json',
       override: {
         mutator: {
           path: './src/api/authenticated-fetch.ts',
           name: 'authenticatedFetch',
         },
       },
-// #endif
     },
   },
 })

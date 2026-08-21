@@ -8,16 +8,22 @@ function getUser(): User | null {
   if (!oidcStorage) return null
   return User.fromStorageString(oidcStorage)
 }
+// #endif
 
-export async function authenticatedFetch(
+export async function authenticatedFetch<T>(
   input: RequestInfo | URL,
   init?: RequestInit,
-): Promise<Response> {
-  const user = getUser()
+): Promise<T> {
   const headers = new Headers(init?.headers)
+// #if (includeAuth)
+  const user = getUser()
   if (user?.access_token) {
     headers.set('Authorization', `Bearer ${user.access_token}`)
   }
-  return fetch(input, { ...init, headers })
-}
 // #endif
+  const response = await fetch(input, { ...init, headers })
+  const body = [204, 205, 304].includes(response.status) ? null : await response.text()
+  const data = body ? JSON.parse(body) : {}
+
+  return { data, status: response.status, headers: response.headers } as T
+}
