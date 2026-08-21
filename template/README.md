@@ -10,7 +10,7 @@ API application built with .NET 10 Minimal API.
 
 - [.NET 10 SDK](https://dotnet.microsoft.com/download)
 <!-- #if (includeFrontend) -->
-- [Node.js 20+](https://nodejs.org/)
+- [Node.js 22.18+](https://nodejs.org/)
 <!-- #endif -->
 
 ## Project Structure
