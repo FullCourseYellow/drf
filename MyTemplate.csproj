@@ -8,6 +8,7 @@
     <Description>dotnet new template: .NET 10 minimal API + React 19, EF Core SQLite, Serilog, OTel, Scalar, OIDC, Gridify, ErrorOr, TanStack Router/Table, shadcn/ui (Base UI), Tailwind v4, Orval</Description>
     <PackageTags>template;dotnet;react;minimal-api;fullstack</PackageTags>
     <TargetFramework>net10.0</TargetFramework>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <IncludeContentInPack>true</IncludeContentInPack>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <ContentTargetFolders>content</ContentTargetFolders>
