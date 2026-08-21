@@ -1,22 +1,23 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useState } from 'react'
-import { type ColumnDef } from '@tanstack/react-table'
-import { DataTable } from '@/components/data-table'
+import { createColumnHelper } from '@tanstack/react-table'
+import { DataTable, dataTableFeatures } from '@/components/data-table'
 import { getWeatherForecasts } from '@/api/generated/weather-forecasts/weather-forecasts'
 import type { WeatherForecast } from '@/api/generated/companyProjectNameApiV1.schemas'
 
 const PAGE_SIZE = 10
 
-const columns: ColumnDef<WeatherForecast>[] = [
-  { accessorKey: 'id', header: 'ID' },
-  { accessorKey: 'date', header: 'Date' },
-  { accessorKey: 'temperatureC', header: 'Temp (°C)' },
-  {
-    accessorKey: 'summary',
+const columnHelper = createColumnHelper<typeof dataTableFeatures, WeatherForecast>()
+
+const columns = columnHelper.columns([
+  columnHelper.accessor('id', { header: 'ID' }),
+  columnHelper.accessor('date', { header: 'Date' }),
+  columnHelper.accessor('temperatureC', { header: 'Temp (°C)' }),
+  columnHelper.accessor('summary', {
     header: 'Summary',
-    cell: ({ getValue }) => getValue<string>() ?? '—',
-  },
-]
+    cell: ({ getValue }) => getValue() ?? '—',
+  }),
+])
 
 export const Route = createFileRoute('/weather-forecasts')({
   component: WeatherForecastsPage,

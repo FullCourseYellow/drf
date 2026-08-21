@@ -1,8 +1,9 @@
 import {
   type ColumnDef,
-  flexRender,
-  getCoreRowModel,
-  useReactTable,
+  type RowData,
+  rowPaginationFeature,
+  tableFeatures,
+  useTable,
 } from '@tanstack/react-table'
 import {
   Table,
@@ -14,8 +15,10 @@ import {
 } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
+export const dataTableFeatures = tableFeatures({ rowPaginationFeature })
+
+interface DataTableProps<TData extends RowData> {
+  columns: ColumnDef<typeof dataTableFeatures, TData>[]
   data: TData[]
   totalCount: number
   page: number
@@ -23,18 +26,18 @@ interface DataTableProps<TData, TValue> {
   onPageChange: (page: number) => void
 }
 
-export function DataTable<TData, TValue>({
+export function DataTable<TData extends RowData>({
   columns,
   data,
   totalCount,
   page,
   pageSize,
   onPageChange,
-}: DataTableProps<TData, TValue>) {
-  const table = useReactTable({
+}: DataTableProps<TData>) {
+  const table = useTable({
+    features: dataTableFeatures,
     data,
     columns,
-    getCoreRowModel: getCoreRowModel(),
     manualPagination: true,
     rowCount: totalCount,
     state: {
@@ -55,7 +58,7 @@ export function DataTable<TData, TValue>({
                   <TableHead key={header.id}>
                     {header.isPlaceholder
                       ? null
-                      : flexRender(header.column.columnDef.header, header.getContext())}
+                      : <table.FlexRender header={header} />}
                   </TableHead>
                 ))}
               </TableRow>
@@ -65,9 +68,9 @@ export function DataTable<TData, TValue>({
             {table.getRowModel().rows.length > 0 ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow key={row.id}>
-                  {row.getVisibleCells().map((cell) => (
+                  {row.getAllCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      <table.FlexRender cell={cell} />
                     </TableCell>
                   ))}
                 </TableRow>
