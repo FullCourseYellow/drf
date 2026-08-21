@@ -17,6 +17,6 @@
 
   <ItemGroup>
     <Content Include="template\**\*"
-             Exclude="template\**\bin\**;template\**\obj\**;template\**\node_modules\**;template\**\.git\**;template\**\*.db;template\**\dist\**;template\**\logs\app-*.log" />
+             Exclude="template\**\bin\**;template\**\obj\**;template\**\node_modules\**;template\**\.git\**;template\**\*.db;template\**\*.db-shm;template\**\*.db-wal;template\**\*.db-journal;template\**\dist\**;template\**\logs\app-*.log" />
   </ItemGroup>
 </Project>
